@@ -1,0 +1,53 @@
+ftp项目连接：https://github.com/fatedier/frp/
+
+1，下载frp （frp_0.27.0_linux_386）
+wget https://github.com/fatedier/frp/releases/download/v0.27.0/frp_0.27.0_linux_386.tar.gz
+
+2，创建ftps的配置文件
+vim ./frp_0.27.0_linux_386/frps_OWN.ini
+-----frps_OWN.ini-----------
+frps bind_port :10000
+token:key_OWN
+-----frps_OWN.ini-----------
+
+3，添加frps的开机启动
+sudo vim /etc/rc.local
+-----rc.local-----------
+#! /bin/sh -e
+#
+# rc.local
+#
+
+/home/wj/frps_start.sh
+
+exit 0
+----------------
+
+
+
+
+PS：
+Ubuntu 18.04 添加开机启动脚本
+之前的版本中可以直接编辑 rc.local 添加开机启动脚本，而新版本这个功能默认是禁用的；
+
+编辑 rc.local.service
+
+vi /lib/systemd/system/rc.local.service
+在最下面添加
+
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+创建开机自启
+
+systemctl enable rc.local.service
+创建 rc.local
+
+touch /etc/rc.local
+chmod 755 /etc/rc.local
+将开机要执行的脚本或命令添加到 rc.local 即可
+
+
+
+
+
