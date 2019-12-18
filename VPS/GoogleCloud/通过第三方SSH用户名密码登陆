@@ -1,0 +1,9 @@
+1,修改SSH配置文件/etc/ssh/sshd_config
+  vi /etc/ssh/sshd_config
+  
+2,修改PasswordAuthentication为yes
+  # Change to no to disable tunnelled clear text passwords
+  PasswordAuthentication yes //默认为no，改为yes开启密码登陆
+
+3,重启SSH服务使修改生效
+  /etc/init.d/ssh restart
