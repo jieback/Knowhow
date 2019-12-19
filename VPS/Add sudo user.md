@@ -9,7 +9,7 @@ root@vultr:~# cat /etc/group | grep sudo
 sudo:x:27:ubuntu
 ```
 
-'''
+```
 root@vultr:~# usermod -G sudo -a newuser
 ```
 
