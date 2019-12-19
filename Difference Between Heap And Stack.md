@@ -84,13 +84,15 @@
   堆：一般是在堆的头部用一个字节存放堆的大小。堆中的具体内容由程序员安排。    
    
 ##  2.6存取效率的比较    
-   
+```   
   char   s1[]   =   "aaaaaaaaaaaaaaa";    
   char   *s2   =   "bbbbbbbbbbbbbbbbb";    
+```  
   aaaaaaaaaaa是在运行时刻赋值的；    
   而bbbbbbbbbbb是在编译时就确定的；    
   但是，在以后的存取中，在栈上的数组比指针所指向的字符串(例如堆)快。    
   比如：    
+```
   #include    
   void   main()    
   {    
@@ -101,7 +103,9 @@
   a   =   p[1];    
   return;    
   }    
+```
   对应的汇编代码    
+```
   10:   a   =   c[1];    
   00401067   8A   4D   F1   mov   cl,byte   ptr   [ebp-0Fh]    
   0040106A   88   4D   FC   mov   byte   ptr   [ebp-4],cl    
@@ -109,6 +113,7 @@
   0040106D   8B   55   EC   mov   edx,dword   ptr   [ebp-14h]    
   00401070   8A   42   01   mov   al,byte   ptr   [edx+1]    
   00401073   88   45   FC   mov   byte   ptr   [ebp-4],al    
+```
   第一种在读取时直接就把字符串中的元素读到寄存器cl中，而第二种则要先把指针值读到  
   edx中，再根据edx读取字符，显然慢了。    
    
